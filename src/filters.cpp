@@ -57,7 +57,7 @@ template <typename _T>
     {
       if (norm < threshold)
       {
-        current_interval.start_idx = i;
+        current_interval.start_idx = i + 100;
         look_for_start = false;
       }
     }
@@ -65,7 +65,7 @@ template <typename _T>
     {
       if (norm >= threshold)
       {
-        current_interval.end_idx = i - 1;
+        current_interval.end_idx = i - 1 - 100;
         look_for_start = true;
         intervals.push_back(current_interval);
       }

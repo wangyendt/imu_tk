@@ -323,7 +323,7 @@ public:
    *                     collected in parallel with the acceleations 
    *                     at the sensor data rate.
    */
-  bool calibrateAccGyro( const std::vector< TriadData_<_T> > &acc_samples, 
+  bool calibrateAccGyro( const std::vector< TriadData_<_T> > &acc_samples,
                          const std::vector< TriadData_<_T> > &gyro_samples );
 
   /** @brief Provide the calibration parameters for the acceleremoters triad (it should be called after
@@ -340,7 +340,11 @@ public:
   /** @brief Provide the calibrated gyroscopes data vector (it should be called after
    *         calibrateAccGyro() ) */
   const std::vector< TriadData_<_T> >& getCalibGyroSamples() const { return calib_gyro_samples_; };
-  
+
+  void setStaticIntervalPath(std::string static_interval_path) { static_interval_path_ = std::move(static_interval_path);};
+  void read_static_intervals_from_py(std::vector< imu_tk::DataInterval > &static_intervals);
+
+
 private:
   
   _T g_mag_;
@@ -354,6 +358,7 @@ private:
   CalibratedTriad_<_T> init_acc_calib_, init_gyro_calib_;
   CalibratedTriad_<_T> acc_calib_, gyro_calib_;
   std::vector< TriadData_<_T> > calib_acc_samples_, calib_gyro_samples_;
+  std::string static_interval_path_;
   
   bool verbose_output_;
 };
