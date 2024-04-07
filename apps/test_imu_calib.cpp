@@ -43,7 +43,8 @@ int main(int argc, char** argv)
   mp_calib.enableGyroBiasOptimization(true);
   mp_calib.setIntarvalsNumSamples(500 * 2);
   // mp_calib.enableAccUseMeans(true);
-  mp_calib.setGyroDataPeriod(0.002);
+  // mp_calib.setGyroDataPeriod(0.002);
+  mp_calib.setGyroDataPeriod(0.0); // 设置为0，这样积分时使用真实时间戳
   mp_calib.calibrateAccGyro(acc_data, gyro_data );
   cout << save_root + "/test_imu_acc.calib" << endl;
   mp_calib.getAccCalib().save(save_root + "/test_imu_acc.calib");
